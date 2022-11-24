@@ -1,3 +1,34 @@
+//Get Students
+
+
+fetch('http://localhost/Back/api/read.php')
+  .then((response) => response.json())
+  .then((res) => {
+    //if there is data
+    const list=document.querySelector("#student-list")
+    
+    for(let student of res.data){
+      console.log("student=",student)
+      const {firstname,lastname,rollno}=student
+      const row=document.createElement("tr")
+      row.innerHTML=`
+        <td>${firstname}</td>
+        <td>${lastname}</td>
+        <td>${rollno}</td>
+        <td>
+        <a href="#" class="btn btn-warning btn-sm edit">Edit</a>
+        <a href="#" class="btn btn-danger btn-sm delete">Delete</a>
+        </td>
+      `
+      list.appendChild(row)
+
+    }
+      
+    
+  });
+
+
+
 let selectedRow=null
 
 //Show Alerts
